@@ -3,8 +3,10 @@ import Particle = require('../../libs/Particle');
 import Vec2 = require('../../libs/Vec2'); 
 
 const settings = {
-    width : 3510,
-    height: 2481
+    width : 2481,
+    height: 3510
+    // width : 3510,
+    // height: 2481
     // width : 500,
     // height: 500
 };
@@ -21,40 +23,13 @@ const s = ( s :p5 ) => {
 
     s.setup = () => {
         cnv = s.createGraphics(settings.width, settings.height);
+
+        s.createCanvas(1000,1000);
+
         canvas_ratio = settings.width/settings.height;
 
-        let margin = 0.9;
-        if( (settings.width * margin) > s.windowWidth || (settings.height * margin) > s.windowHeight)
-        {
-            let window_ratio = s.windowWidth / s.windowHeight;
-            
-            if( window_ratio >= canvas_ratio)
-            {
-                let ratio = s.windowHeight/settings.height;
-                s.createCanvas(settings.width * ratio, settings.height * ratio);
-            }else{
-                let ratio = s.windowWidth/settings.width;
-                s.createCanvas(settings.width * ratio, settings.height * ratio);
-            }
-
-        }else{
-            s.createCanvas(settings.width, settings.height);
-        }
-
-        // let view_height = s.windowHeight * 0.8; //canvas_ratio;
-        // let view_width = view_height * canvas_ratio;
-        // s.createCanvas(view_width, view_height);
-
-        // let view_ratio = s.windowWidth/s.windowHeight;
-        // if( view_ratio > 0) // view is landscape
-        // {
-            
-        // }else if(view_ratio < 0) // view is portrait
-        // {
-
-        // } else { // view is square
-
-        // }
+        layoutCanvas();
+        
     };
 
     s.draw = () => {
@@ -70,8 +45,30 @@ const s = ( s :p5 ) => {
         s.pop();
     };
 
-    const layoutCanvas = (s : p5) => {
-        
+    s.windowResized = () => {
+        layoutCanvas();
+    };
+
+    const layoutCanvas = () => {
+        let margin = 0.95;
+        if( settings.width > s.windowWidth || settings.height > s.windowHeight)
+        {
+            let window_ratio = s.windowWidth / s.windowHeight;
+            
+            if( window_ratio >= canvas_ratio)
+            {
+                let ratio = s.windowHeight/settings.height;
+                ratio *= margin;
+                s.resizeCanvas(settings.width * ratio, settings.height * ratio);
+            }else{
+                let ratio = s.windowWidth/settings.width;
+                ratio *= margin;
+                s.resizeCanvas(settings.width * ratio, settings.height * ratio);
+            }
+
+        }else{
+            s.resizeCanvas(settings.width, settings.height);
+        }
     };
 
 };
