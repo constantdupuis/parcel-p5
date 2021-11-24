@@ -2,6 +2,8 @@ import p5 = require('p5');
 import { P5SubSketch } from "../libs/P5SubSketche";
 
 export class testSubSketche extends P5SubSketch{
+    step_nbr = 10;
+
     constructor(p : p5.Graphics)
     {
         super(p);
@@ -9,22 +11,21 @@ export class testSubSketche extends P5SubSketch{
 
     setup() : void
     {
-
+        this.p.background(100);
     }
 
     draw() : void
     {
         let ctx = this.p;
-        ctx.background(0);
-        ctx.stroke(255, 204, 0);
+        let step_width = ctx.width / this.step_nbr;
+        let step_height = ctx.height / this.step_nbr;
+
+        ctx.stroke(200);
+        for( let i = 0; i<this.step_nbr; i++)
+        {
+            ctx.line( step_width * i, 0, step_width * i, ctx.height  );
+            ctx.line( 0, step_height * i, ctx.width, step_height * i  );
+        }
         ctx.line(ctx.width * 0.1, ctx.height * 0.1, ctx.width * 0.9, ctx.height * 0.9);
-        // ctx.push();
-        // let w = ctx.width / 2;
-        // let h = ctx.height / 2;
-        // ctx.translate( ctx.width / 2, ctx.height / 2);
-        // //ctx.translate( 200,200);
-        // ctx.fill(255, 204, 0);
-        // ctx.circle(0,0,100);
-        ctx.pop();
     }
 }

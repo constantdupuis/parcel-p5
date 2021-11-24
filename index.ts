@@ -1,4 +1,7 @@
 import p5 from 'p5';
+import { P5SubSketch } from './libs/P5SubSketche';
+// change this import to change SubSketch
+import { testSubSketche as SubSketche } from './sub-sketches/testSubSketche';
 
 const settings = {
     // width : 2481,
@@ -7,7 +10,7 @@ const settings = {
     height: 2481,
     // width : 800,
     // height: 800,
-    bg_color : "white"
+    bg_color : "#F9F5DE"
 };
 
 const s = ( s : p5 ) => {
@@ -16,36 +19,49 @@ const s = ( s : p5 ) => {
     let scale = 1.0;
     let translate : p5.Vector = s.createVector();
     let canvas_ratio : number;
+    let subSketch : P5SubSketch;
 
     s.setup = () => {
+        canvas_ratio = settings.width/settings.height;
+        s.remove(); // used to avoid multiple canvas when reloading index.ts with Parcel
+        s.createCanvas(s.windowWidth, s.windowHeight);
+        s.pixelDensity(1);
+        s.background(settings.bg_color);
+
+        // create drawing surface for P5SubSketch
+        canvas = s.createGraphics(settings.width, settings.height);
+        canvas.pixelDensity(1);
+
+        // calulate drawing surface translate and ratio
         layoutCanvas();
+
+        // create P5SubSketch
+        subSketch = new SubSketche(canvas)
+        subSketch.setup();
     };
 
     s.draw = () => {
-        canvas.background(0);
-        canvas.stroke(128);
-        canvas.strokeWeight(10);
-        canvas.line(settings.width * 0.1, settings.height * 0.1, settings.width * 0.9, settings.height * 0.9);
+        // sub sketch draw
+        subSketch.draw();
 
+        // draw subsketch 
         s.push();
-        s.scale(scale);
         s.translate(translate);
+        s.scale(scale);
         s.image(canvas, 0, 0);
         s.pop();
      };
 
     s.windowResized = () => {
+        //console.log("windowResized");
+        s.resizeCanvas(s.windowWidth, s.windowHeight);
+        s.pixelDensity(1);
+        s.background(settings.bg_color);
         layoutCanvas();
     };
 
     const layoutCanvas = () => {
-        canvas_ratio = settings.width/settings.height;
-        s.pixelDensity(1);
-        s.createCanvas(s.windowWidth, s.windowHeight);
-        s.background(settings.bg_color);
-
-        canvas = s.createGraphics(settings.width, settings.height);
-        canvas.pixelDensity(1);
+        //console.log("layoutCanvas");
         
         if( settings.width > s.windowWidth || settings.height > s.windowHeight)
         {
@@ -56,6 +72,7 @@ const s = ( s : p5 ) => {
             }else{
                 scale = s.windowWidth/(settings.width);
             }
+            scale *= 0.95; // make sure to have margin around drawing surface
             translate.x = (s.windowWidth - (canvas.width*scale)) / 2.0;
             translate.y = (s.windowHeight - (canvas.height*scale)) / 2.0;
         }else{
@@ -67,4 +84,5 @@ const s = ( s : p5 ) => {
 
 };
 
+// create P5 sketch
 let myp5 = new p5(s);
