@@ -2,9 +2,14 @@ import Vec2 from "./Vec2";
 
 export class GridCell
 {
-    constructor()
+    pos : Vec2;
+    size : Vec2;
+    top_left : Vec2;
+    constructor(pos : Vec2, size : Vec2, top_left : Vec2)
     {
-
+        this.pos = pos;
+        this.size = size;
+        this.top_left = top_left;
     }
 }
 
@@ -34,6 +39,18 @@ export class Grid {
         }else{
             this.pos_in_cell = pos_in_cell;
         }
+
+        let size = new Vec2(this.cell_width, this.cell_height);
+        for( let i = 0 ; i < this.cols; i++)
+            for( let j = 0; j< this.rows; j++)
+            {
+                let top_left = new Vec2(i*this.cell_width, j*this.cell_height);
+                let c = new GridCell( 
+                    top_left.getAdd( size.getMult(this.pos_in_cell)), 
+                    size , 
+                    top_left );
+                this.cells.push(c);
+            }
     }
 
 }

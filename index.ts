@@ -1,13 +1,14 @@
 import p5 from 'p5';
 import { P5SubSketch } from './libs/P5SubSketche';
 // change this import to change SubSketch
-import { testSubSketche as SubSketche } from './sub-sketches/testSubSketche';
+//import { testSubSketche as SubSketche } from './sub-sketches/testSubSketche';
+import { testGrid as SubSketche } from './sub-sketches/testGrid';
 
 const settings = {
-    // width : 2481,
-    // height: 3510,
-    width : 3510,
-    height: 2481,
+    width : 2481,
+    height: 3510,
+    // width : 3510,
+    // height: 2481,
     // width : 800,
     // height: 800,
     bg_color : "#F9F5DE"
@@ -23,7 +24,7 @@ const s = ( s : p5 ) => {
 
     s.setup = () => {
         canvas_ratio = settings.width/settings.height;
-        s.remove(); // used to avoid multiple canvas when reloading index.ts with Parcel
+        //s.remove(); // used to avoid multiple canvas when reloading index.ts with Parcel
         s.createCanvas(s.windowWidth, s.windowHeight);
         s.pixelDensity(1);
         s.background(settings.bg_color);
@@ -53,7 +54,7 @@ const s = ( s : p5 ) => {
      };
 
     s.windowResized = () => {
-        //console.log("windowResized");
+        console.log("windowResized");
         s.resizeCanvas(s.windowWidth, s.windowHeight);
         s.pixelDensity(1);
         s.background(settings.bg_color);
@@ -61,7 +62,7 @@ const s = ( s : p5 ) => {
     };
 
     const layoutCanvas = () => {
-        //console.log("layoutCanvas");
+        console.log("layoutCanvas");
         
         if( settings.width > s.windowWidth || settings.height > s.windowHeight)
         {
