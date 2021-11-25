@@ -5,12 +5,12 @@ import { testSubSketche as SubSketche } from './sub-sketches/testSubSketche';
 //import { testGrid as SubSketche } from './sub-sketches/testGrid';
 
 const settings = {
-    width : 2481,
-    height: 3510,
+    // width : 2481,
+    // height: 3510,
     // width : 3510,
     // height: 2481,
-    // width : 800,
-    // height: 800,
+    width : 800,
+    height: 800,
     bg_color : "#F9F5DE"
 };
 

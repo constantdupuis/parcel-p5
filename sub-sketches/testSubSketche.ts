@@ -17,7 +17,7 @@ export class testSubSketche extends P5SubSketch{
     {
         this.p.background(100);
         this.anim_pos = this.p.createVector(0,0);
-        this.anim_speed = this.p.createVector(10,10);
+        this.anim_speed = this.p.createVector(10,11);
     }
 
     draw() : void
@@ -38,7 +38,7 @@ export class testSubSketche extends P5SubSketch{
 
         this.anim_pos= this.anim_pos.add( this.anim_speed );
         ctx.stroke('yellow');
-        ctx.fill('green');
+        ctx.fill('red');
         ctx.circle( this.anim_pos.x, this.anim_pos.y, ctx.width * 0.1);
 
         if( this.anim_pos.x < 0 || this.anim_pos.x > ctx.width)
