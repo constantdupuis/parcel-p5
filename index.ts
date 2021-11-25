@@ -1,8 +1,8 @@
 import p5 from 'p5';
 import { P5SubSketch } from './libs/P5SubSketche';
 // change this import to change SubSketch
-//import { testSubSketche as SubSketche } from './sub-sketches/testSubSketche';
-import { testGrid as SubSketche } from './sub-sketches/testGrid';
+import { testSubSketche as SubSketche } from './sub-sketches/testSubSketche';
+//import { testGrid as SubSketche } from './sub-sketches/testGrid';
 
 const settings = {
     width : 2481,
@@ -24,7 +24,7 @@ const s = ( s : p5 ) => {
 
     s.setup = () => {
         canvas_ratio = settings.width/settings.height;
-        //s.remove(); // used to avoid multiple canvas when reloading index.ts with Parcel
+        //s.remove(); // used to avoid multiple canvas when reloading index.ts with Parcel, But it avoid windowResized to be called :-()
         s.createCanvas(s.windowWidth, s.windowHeight);
         s.pixelDensity(1);
         s.background(settings.bg_color);
