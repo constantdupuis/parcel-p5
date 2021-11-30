@@ -3,7 +3,8 @@ import { P5SubSketch } from './libs/P5SubSketche';
 // change this import to change SubSketch
 //import { testSubSketche as SubSketche } from './sub-sketches/testSubSketche';
 //import { testGrid as SubSketche } from './sub-sketches/testGrid';
-import { pFlowFeather as SubSketche } from './sub-sketches/pflow-feather';
+//import { pFlowFeather as SubSketche } from './sub-sketches/pflow-feather';
+import { noiseExperiments as SubSketche } from './sub-sketches/noise-experiments';
 
 
 const settings = {
