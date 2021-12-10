@@ -7,6 +7,11 @@ export class P5SubSketch
         this.p = p;
     }
 
+    preload() : void
+    {
+        
+    }
+
     setup() : void
     {
 

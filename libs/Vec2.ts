@@ -33,10 +33,29 @@ class Vec2 {
         }
     }
 
-    getMult(factor : number | Vec2 ) : Vec2
+    div(factor : number | Vec2) : void
+    {
+        if( typeof factor == "number")
+        {
+            this.x /= factor;
+            this.y /= factor;
+        }else{
+            this.x /= factor.x;
+            this.y /= factor.y;
+        }
+    }
+
+    getMult(factor : number | Vec2) : Vec2
     {
         var ret : Vec2 = new Vec2(this.x, this.y);
         ret.mult(factor);
+        return ret;
+    }
+
+    getDiv(factor : number | Vec2) : Vec2
+    {
+        var ret : Vec2 = new Vec2(this.x, this.y);
+        ret.div(factor);
         return ret;
     }
 }

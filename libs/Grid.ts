@@ -5,11 +5,14 @@ export class GridCell
     pos : Vec2;
     size : Vec2;
     top_left : Vec2;
-    constructor(pos : Vec2, size : Vec2, top_left : Vec2)
+    norm_pos : Vec2;
+
+    constructor(pos : Vec2, size : Vec2, top_left : Vec2, norm_pos : Vec2)
     {
         this.pos = pos;
         this.size = size;
         this.top_left = top_left;
+        this.norm_pos = norm_pos;
     }
 }
 
@@ -45,10 +48,14 @@ export class Grid {
             for( let j = 0; j< this.rows; j++)
             {
                 let top_left = new Vec2(i*this.cell_width, j*this.cell_height);
+                top_left = top_left.getAdd( size.getMult(this.pos_in_cell));
+                let norm_pos = top_left.getDiv( new Vec2(this.width, this.height) ); 
+
                 let c = new GridCell( 
-                    top_left.getAdd( size.getMult(this.pos_in_cell)), 
+                    top_left, 
                     size , 
-                    top_left );
+                    top_left,
+                    norm_pos);
                 this.cells.push(c);
             }
     }

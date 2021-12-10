@@ -3,7 +3,8 @@ import { P5SubSketch } from './libs/P5SubSketche';
 // change this import to change SubSketch
 //import { testSubSketche as SubSketche } from './sub-sketches/testSubSketche';
 //import { testGrid as SubSketche } from './sub-sketches/testGrid';
-import { pFlowFeather as SubSketche } from './sub-sketches/pflow-feather';
+//import { pFlowFeather as SubSketche } from './sub-sketches/pflow-feather';
+import { PaintFromPicture as SubSketche } from './sub-sketches/paint-from-picture';
 
 
 const settings = {
@@ -39,7 +40,7 @@ const s = ( s : p5 ) => {
         layoutCanvas();
 
         // create P5SubSketch
-        subSketch = new SubSketche(canvas)
+        subSketch = new SubSketche(canvas);
         subSketch.setup();
     };
 
