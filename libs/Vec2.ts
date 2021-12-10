@@ -1,6 +1,14 @@
+import p5 = require('p5');
+
+
 class Vec2 {
     x: number;
     y: number;
+
+    static fromP5Vector( src : p5.Vector ) : Vec2
+    {
+        return new Vec2(src.x, src.y);
+    }
 
     constructor(x: number = 0, y: number = 0)
     {
@@ -8,6 +16,7 @@ class Vec2 {
         this.y = y;
     }
 
+    
     add(vec : Vec2) : void
     {
         this.x += vec.x;

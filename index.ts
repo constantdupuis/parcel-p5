@@ -4,8 +4,8 @@ import { P5SubSketch } from './libs/P5SubSketche';
 //import { testSubSketche as SubSketche } from './sub-sketches/testSubSketche';
 //import { testGrid as SubSketche } from './sub-sketches/testGrid';
 //import { pFlowFeather as SubSketche } from './sub-sketches/pflow-feather';
+//import { noiseExperiments as SubSketche } from './sub-sketches/noise-experiments';
 import { PaintFromPicture as SubSketche } from './sub-sketches/paint-from-picture';
-
 
 const settings = {
     // width : 2481,
@@ -14,7 +14,7 @@ const settings = {
     // height: 2481,
     width : 800,
     height: 800,
-    bg_color : "#F9F5DE"
+    bg_color : 128
 };
 
 const s = ( s : p5 ) => {
@@ -26,6 +26,13 @@ const s = ( s : p5 ) => {
     let subSketch : P5SubSketch;
 
     s.setup = () => {
+
+        if( SubSketche.usePreferedCanvasSize)
+        {
+            settings.width = SubSketche.preferedCanvasSize.x;
+            settings.height = SubSketche.preferedCanvasSize.y;
+        }
+
         canvas_ratio = settings.width/settings.height;
         //s.remove(); // used to avoid multiple canvas when reloading index.ts with Parcel, But it avoid windowResized to be called :-()
         s.createCanvas(s.windowWidth, s.windowHeight);
